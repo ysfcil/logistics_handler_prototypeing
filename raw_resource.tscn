@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy32wxlfh0ndk"]
+
+[ext_resource type="Script" path="res://Scripts/Raw_resource.gd" id="1_r1gkp"]
+
+[node name="Raw_resource" type="Panel"]
+offset_right = 103.0
+offset_bottom = 95.0
+script = ExtResource("1_r1gkp")
+is_oil = true
+
+[node name="Resource_name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 42.0
+horizontal_alignment = 1
+
+[node name="Price_per_unit" type="Label" parent="."]
+layout_mode = 0
+offset_top = 47.0
+offset_right = 101.0
+offset_bottom = 93.0
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = -2.0
+offset_right = 143.0
+offset_bottom = 22.0
