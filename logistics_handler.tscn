@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://qqhiwdugqlmd"]
+
+[ext_resource type="Script" path="res://Logistics_handler.gd" id="1_65enj"]
+[ext_resource type="PackedScene" uid="uid://b6bipjmuwloks" path="res://connection_line.tscn" id="2_1nlks"]
+[ext_resource type="PackedScene" uid="uid://ong4dxyxic3h" path="res://panel.tscn" id="3_kiegn"]
+
+[node name="Logistics_handler" type="Node"]
+script = ExtResource("1_65enj")
+line_scene = ExtResource("2_1nlks")
+
+[node name="Bangladesh" parent="." instance=ExtResource("3_kiegn")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -939.0
+offset_top = 211.0
+offset_right = -763.0
+offset_bottom = 401.0
+grow_horizontal = 0
+pivot_offset = Vector2(80, 106)
+
+[node name="London" parent="." instance=ExtResource("3_kiegn")]
+offset_left = 625.0
+offset_top = 75.0
+offset_right = 801.0
+offset_bottom = 265.0
+pivot_offset = Vector2(78, 94)
+
+[node name="New_York" parent="." instance=ExtResource("3_kiegn")]
+offset_left = 737.0
+offset_top = 350.0
+offset_right = 913.0
+offset_bottom = 540.0
+pivot_offset = Vector2(80, 87)
+
+[connection signal="city_has_goods" from="." to="Bangladesh" method="_on_logistics_handler_city_has_goods"]
+[connection signal="city_has_goods" from="." to="London" method="_on_logistics_handler_city_has_goods"]
+[connection signal="city_has_goods" from="." to="New_York" method="_on_logistics_handler_city_has_goods"]
+[connection signal="connection_created" from="." to="Bangladesh" method="connection_created"]
+[connection signal="connection_created" from="." to="London" method="connection_created"]
+[connection signal="connection_created" from="." to="New_York" method="connection_created"]
+[connection signal="logistics_handler_factory_info" from="Bangladesh" to="." method="factory_info"]
+[connection signal="logistics_handler_info" from="Bangladesh" to="." method="logistics_handler_info"]
+[connection signal="sending_goods" from="Bangladesh" to="London" method="other_city_sending_goods"]
+[connection signal="sending_goods" from="Bangladesh" to="New_York" method="other_city_sending_goods"]
+[connection signal="logistics_handler_factory_info" from="London" to="." method="factory_info"]
+[connection signal="logistics_handler_info" from="London" to="." method="logistics_handler_info"]
+[connection signal="sending_goods" from="London" to="Bangladesh" method="other_city_sending_goods"]
+[connection signal="sending_goods" from="London" to="New_York" method="other_city_sending_goods"]
+[connection signal="logistics_handler_factory_info" from="New_York" to="." method="factory_info"]
+[connection signal="logistics_handler_info" from="New_York" to="." method="logistics_handler_info"]
+[connection signal="sending_goods" from="New_York" to="Bangladesh" method="other_city_sending_goods"]
+[connection signal="sending_goods" from="New_York" to="London" method="other_city_sending_goods"]

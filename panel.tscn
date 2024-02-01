@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://ong4dxyxic3h"]
+
+[ext_resource type="Script" path="res://city_control_script.gd" id="1_jp0mf"]
+
+[node name="Bangladesh" type="Panel"]
+offset_left = 377.0
+offset_top = 110.0
+offset_right = 553.0
+offset_bottom = 300.0
+script = ExtResource("1_jp0mf")
+
+[node name="in_button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -53.0
+offset_top = 32.0
+offset_bottom = 65.0
+disabled = true
+text = ">"
+
+[node name="out_button" type="Button" parent="."]
+layout_mode = 1
+offset_left = -47.0
+offset_right = -1.0
+offset_bottom = 31.0
+text = "<"
+
+[node name="Name_label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 176.0
+offset_bottom = 29.0
+horizontal_alignment = 1
+
+[node name="Goods_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 165.0
+offset_right = 177.0
+offset_bottom = 188.0
+
+[node name="Factory_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 138.0
+offset_right = 175.0
+offset_bottom = 161.0
+
+[node name="facto_buy" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+offset_right = 79.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "BUY
+FACTORY"
+
+[connection signal="sending_goods" from="." to="." method="other_city_sending_goods"]
+[connection signal="pressed" from="out_button" to="." method="out_button_pressed"]
+[connection signal="pressed" from="facto_buy" to="." method="_on_facto_buy_pressed"]
