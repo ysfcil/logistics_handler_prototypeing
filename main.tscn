@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqhbhnxuprg4s"]
 
-[ext_resource type="Script" path="res://main_script.gd" id="1_1lj1s"]
-[ext_resource type="Script" path="res://Timer_script.gd" id="1_frvny"]
+[ext_resource type="Script" path="res://Sprites/main_script.gd" id="1_1lj1s"]
+[ext_resource type="Script" path="res://Scripts/Timer_script.gd" id="1_frvny"]
 [ext_resource type="PackedScene" uid="uid://qqhiwdugqlmd" path="res://logistics_handler.tscn" id="2_gwgwm"]
 
 [node name="Main" type="Node2D"]

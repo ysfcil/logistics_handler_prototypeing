@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qqhiwdugqlmd"]
 
-[ext_resource type="Script" path="res://Logistics_handler.gd" id="1_65enj"]
+[ext_resource type="Script" path="res://Scripts/Logistics_handler.gd" id="1_65enj"]
 [ext_resource type="PackedScene" uid="uid://b6bipjmuwloks" path="res://connection_line.tscn" id="2_1nlks"]
 [ext_resource type="PackedScene" uid="uid://ong4dxyxic3h" path="res://panel.tscn" id="3_kiegn"]
 

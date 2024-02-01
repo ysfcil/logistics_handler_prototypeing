@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ong4dxyxic3h"]
 
-[ext_resource type="Script" path="res://city_control_script.gd" id="1_jp0mf"]
+[ext_resource type="Script" path="res://Scripts/city_control_script.gd" id="1_jp0mf"]
 
 [node name="Bangladesh" type="Panel"]
 offset_left = 377.0
