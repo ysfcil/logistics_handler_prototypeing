@@ -1,2 +1,6 @@
+res://Raw_resource.gd
+res://raw_resource.tscn
 res://main.tscn
-res://README.md
+res://Resource_maneger.tscn
+res://Resource_maneger.gd
+res://Scripts/Raw_resource.gd

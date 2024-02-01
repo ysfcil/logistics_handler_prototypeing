@@ -1,9 +1,10 @@
+Node
+CheckButton
 Label
+Panel
 Button
 ProgressBar
 CollisionShape2D
 Area2D
 Line2D
 Timer
-Panel
-Node
