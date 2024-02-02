@@ -40,16 +40,19 @@ func draw_line(out_, in_):
 func _on_timer_timeout():
 	#delivery of connected lines
 	for i in len(connections):
-		if goods_by_city[connections[i][0]][0] > transferred_amount:
-			goods_by_city[connections[i][0]][0] -= transferred_amount
-			goods_by_city[connections[i][1]][0] += transferred_amount
-		else:
-			transferred_amount = goods_by_city[connections[i][0]][0]
-			goods_by_city[connections[i][0]][0] = 0
-			goods_by_city[connections[i][1]][0] += transferred_amount
+		for j in len(goods_by_city["Bangladesh"]):
+			transferred_amount = 10
+			if goods_by_city[connections[i][0]][j] > transferred_amount:
+				goods_by_city[connections[i][0]][j] -= transferred_amount
+				goods_by_city[connections[i][1]][j] += transferred_amount
+			else:
+				transferred_amount = goods_by_city[connections[i][0]][j]
+				goods_by_city[connections[i][0]][j] = 0
+				goods_by_city[connections[i][1]][j] += transferred_amount
 	#produciton
 	for i in len(goods_by_city):
-		goods_by_city.values()[i][0] += factories_by_city.values()[i]*100
+		if resources["Oil1"][0] or resources["Oil2"][0]:
+			goods_by_city.values()[i][0] += factories_by_city.values()[i]*100
 		
 	send_info_to_city()
 	

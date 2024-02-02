@@ -30,7 +30,4 @@ show_percentage = false
 [node name="raw_resources" parent="." instance=ExtResource("4_q4web")]
 
 [connection signal="timeout" from="Timer" to="Logistics_handler" method="_on_timer_timeout"]
-[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/Bangladesh" method="connection_created"]
-[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/London" method="connection_created"]
-[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/New_York" method="connection_created"]
 [connection signal="resource_to_logistics" from="raw_resources" to="Logistics_handler" method="resource_to_logistics"]
