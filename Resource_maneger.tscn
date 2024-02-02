@@ -1,20 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://bais17l2hrh3q"]
 
 [ext_resource type="PackedScene" uid="uid://cy32wxlfh0ndk" path="res://raw_resource.tscn" id="1_0cd3w"]
-[ext_resource type="Script" path="res://Resource_maneger.gd" id="1_aooen"]
+[ext_resource type="Script" path="res://Scripts/Resource_maneger.gd" id="1_aooen"]
 
 [node name="raw_resources" type="Node"]
 script = ExtResource("1_aooen")
 
-[node name="Raw_resource" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Oil1" parent="." instance=ExtResource("1_0cd3w")]
 
-[node name="Raw_resource2" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Oil2" parent="." instance=ExtResource("1_0cd3w")]
 offset_left = 346.0
 offset_top = 133.0
 offset_right = 449.0
 offset_bottom = 228.0
 
-[node name="Raw_resource3" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Lithium1" parent="." instance=ExtResource("1_0cd3w")]
 offset_left = 346.0
 offset_top = 2.0
 offset_right = 449.0
@@ -22,7 +22,7 @@ offset_bottom = 97.0
 is_oil = false
 is_Lithium = true
 
-[node name="Raw_resource4" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Lithium2" parent="." instance=ExtResource("1_0cd3w")]
 offset_left = 162.0
 offset_top = 1.0
 offset_right = 265.0
@@ -30,7 +30,7 @@ offset_bottom = 96.0
 is_oil = false
 is_Lithium = true
 
-[node name="Raw_resource5" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Gold1" parent="." instance=ExtResource("1_0cd3w")]
 offset_left = 167.0
 offset_top = 133.0
 offset_right = 270.0
@@ -38,10 +38,23 @@ offset_bottom = 228.0
 is_oil = false
 is_Gold = true
 
-[node name="Raw_resource6" parent="." instance=ExtResource("1_0cd3w")]
+[node name="Gold2" parent="." instance=ExtResource("1_0cd3w")]
 offset_left = -2.0
 offset_top = 133.0
 offset_right = 101.0
 offset_bottom = 228.0
 is_oil = false
 is_Gold = true
+
+[connection signal="resource_is_working" from="." to="Oil1" method="resource_is_working"]
+[connection signal="resource_is_working" from="." to="Oil2" method="resource_is_working"]
+[connection signal="resource_is_working" from="." to="Lithium1" method="resource_is_working"]
+[connection signal="resource_is_working" from="." to="Lithium2" method="resource_is_working"]
+[connection signal="resource_is_working" from="." to="Gold1" method="resource_is_working"]
+[connection signal="resource_is_working" from="." to="Gold2" method="resource_is_working"]
+[connection signal="resource_on" from="Oil1" to="." method="resource_on"]
+[connection signal="resource_on" from="Oil2" to="." method="resource_on"]
+[connection signal="resource_on" from="Lithium1" to="." method="resource_on"]
+[connection signal="resource_on" from="Lithium2" to="." method="resource_on"]
+[connection signal="resource_on" from="Gold1" to="." method="resource_on"]
+[connection signal="resource_on" from="Gold2" to="." method="resource_on"]

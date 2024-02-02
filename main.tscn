@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqhbhnxuprg4s"]
+[gd_scene load_steps=5 format=3 uid="uid://bqhbhnxuprg4s"]
 
 [ext_resource type="Script" path="res://Sprites/main_script.gd" id="1_1lj1s"]
 [ext_resource type="Script" path="res://Scripts/Timer_script.gd" id="1_frvny"]
 [ext_resource type="PackedScene" uid="uid://qqhiwdugqlmd" path="res://logistics_handler.tscn" id="2_gwgwm"]
+[ext_resource type="PackedScene" uid="uid://bais17l2hrh3q" path="res://Resource_maneger.tscn" id="4_q4web"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1lj1s")
@@ -26,4 +27,10 @@ show_percentage = false
 
 [node name="Logistics_handler" parent="." instance=ExtResource("2_gwgwm")]
 
+[node name="raw_resources" parent="." instance=ExtResource("4_q4web")]
+
 [connection signal="timeout" from="Timer" to="Logistics_handler" method="_on_timer_timeout"]
+[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/Bangladesh" method="connection_created"]
+[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/London" method="connection_created"]
+[connection signal="connection_created" from="Logistics_handler" to="Logistics_handler/New_York" method="connection_created"]
+[connection signal="resource_to_logistics" from="raw_resources" to="Logistics_handler" method="resource_to_logistics"]

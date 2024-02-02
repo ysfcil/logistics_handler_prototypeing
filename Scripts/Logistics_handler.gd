@@ -9,6 +9,7 @@ var connections = []
 var Money
 @export var line_scene : PackedScene
 @export var transferred_amount = 10
+var resources = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Money = 10000
@@ -62,4 +63,9 @@ func factory_info(name_of_the_city, factories_it_has, money_):
 	set_deferred("Money", money_)
 	print(Money)
 	factories_by_city[name_of_the_city] = factories_it_has
+	pass # Replace with function body.
+
+
+func resource_to_logistics(resource_):
+	resources = resource_
 	pass # Replace with function body.

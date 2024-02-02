@@ -12,10 +12,10 @@ line_scene = ExtResource("2_1nlks")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -939.0
-offset_top = 211.0
-offset_right = -763.0
-offset_bottom = 401.0
+offset_left = -868.0
+offset_top = 343.0
+offset_right = -692.0
+offset_bottom = 533.0
 grow_horizontal = 0
 pivot_offset = Vector2(80, 106)
 

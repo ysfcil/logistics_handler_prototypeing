@@ -16,7 +16,7 @@ horizontal_alignment = 1
 
 [node name="Price_per_unit" type="Label" parent="."]
 layout_mode = 0
-offset_top = 47.0
+offset_top = 69.0
 offset_right = 101.0
 offset_bottom = 93.0
 
@@ -26,3 +26,11 @@ offset_left = 99.0
 offset_top = -2.0
 offset_right = 143.0
 offset_bottom = 22.0
+
+[node name="influence" type="Label" parent="."]
+layout_mode = 0
+offset_top = 47.0
+offset_right = 102.0
+offset_bottom = 70.0
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

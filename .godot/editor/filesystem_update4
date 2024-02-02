@@ -1,6 +1,8 @@
-res://Raw_resource.gd
+res://Resource_maneger.tscn
+res://Scripts/Raw_resource.gd
+res://Resource_maneger.gd
 res://raw_resource.tscn
 res://main.tscn
-res://Resource_maneger.tscn
-res://Resource_maneger.gd
-res://Scripts/Raw_resource.gd
+res://Scripts/Resource_maneger.gd
+res://logistics_handler.tscn
+res://Scripts/Logistics_handler.gd
