@@ -1,5 +1,10 @@
+res://panel.tscn
 res://main.tscn
-res://Scripts/Logistics_handler.gd
 res://Resource_maneger.tscn
 res://raw_resource.tscn
 res://logistics_handler.tscn
+res://Scripts/city_control_script.gd
+res://Scripts/Logistics_handler.gd
+res://logistics_menu.tscn
+res://Logistics_menu.gd
+res://window_menu.tscn

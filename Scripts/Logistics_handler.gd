@@ -1,10 +1,11 @@
 extends Node
-var goods_by_city = {"Bangladesh":[107,1], "London": [10,1], "New_York": [500,1]}
-var factories_by_city = {"Bangladesh":0, "London": 0, "New_York": 0}
+var goods_by_city = {"Bangladesh":[107,1,2], "London": [10,1,3], "New_York": [500,1,4]}
+var factories_by_city = {"Bangladesh":[0,0,0], "London": [0,0,0], "New_York": [0,0,0]}
+var wages_by_city = {"Bangladesh":[100,230,350], "London": [500,670,890], "New_York": [689,890,1000]}
 @onready var positions_cities = {"Bangladesh":$Bangladesh.global_position, "London": $London.position, "New_York": $New_York.position}
 signal connection_created(out_, in_)
 signal linePositions(first, second)
-signal city_has_goods(name_name, name_goods, money)
+signal city_has_goods(name_name, name_goods, money, wages)
 var connections = []
 var Money
 @export var line_scene : PackedScene
@@ -19,6 +20,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print(goods_by_city)
 	pass
 
 
@@ -49,22 +51,24 @@ func _on_timer_timeout():
 				transferred_amount = goods_by_city[connections[i][0]][j]
 				goods_by_city[connections[i][0]][j] = 0
 				goods_by_city[connections[i][1]][j] += transferred_amount
-	#produciton
+	#produciton and payement
 	for i in len(goods_by_city):
-		if resources["Oil1"][0] or resources["Oil2"][0]:
-			goods_by_city.values()[i][0] += factories_by_city.values()[i]*100
-		
+		for j in len(goods_by_city.values()):
+			if resources["Oil1"][0] or resources["Oil2"][0]:
+				goods_by_city.values()[i][j] += factories_by_city.values()[i][j]*100
+			Money -= wages_by_city.values()[i][j] * factories_by_city.values()[i][j]
+			
+	#payment
 	send_info_to_city()
 	
 	pass # Replace with function body.
 func send_info_to_city():
 	for i in len(goods_by_city):
-		city_has_goods.emit(goods_by_city.keys()[i], goods_by_city.values()[i][0], Money)
+		city_has_goods.emit(goods_by_city.keys()[i], goods_by_city.values()[i], Money, wages_by_city)
 	pass
 
 func factory_info(name_of_the_city, factories_it_has, money_):
 	set_deferred("Money", money_)
-	print(Money)
 	factories_by_city[name_of_the_city] = factories_it_has
 	pass # Replace with function body.
 
