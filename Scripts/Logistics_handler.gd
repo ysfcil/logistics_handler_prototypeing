@@ -1,6 +1,7 @@
 extends Node
+signal to_connection(factories_by_city)
 var goods_by_city = {"Bangladesh":[107,1,2], "London": [10,1,3], "New_York": [500,1,4]}
-var factories_by_city = {"Bangladesh":[0,0,0], "London": [0,0,0], "New_York": [0,0,0]}
+var factories_by_city = {"Bangladesh":[1,0,0], "London": [0,0,0], "New_York": [0,0,0]}
 var wages_by_city = {"Bangladesh":[100,230,350], "London": [500,670,890], "New_York": [689,890,1000]}
 @onready var positions_cities = {"Bangladesh":$Bangladesh.global_position, "London": $London.position, "New_York": $New_York.position}
 signal connection_created(out_, in_)
@@ -15,12 +16,13 @@ var resources = {}
 func _ready():
 	Money = 10000
 	send_info_to_city()
+	to_connection.emit(factories_by_city)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(goods_by_city)
+	
 	pass
 
 
@@ -65,11 +67,12 @@ func _on_timer_timeout():
 func send_info_to_city():
 	for i in len(goods_by_city):
 		city_has_goods.emit(goods_by_city.keys()[i], goods_by_city.values()[i], Money, wages_by_city)
-	pass
+	to_connection.emit(factories_by_city)
 
 func factory_info(name_of_the_city, factories_it_has, money_):
 	set_deferred("Money", money_)
 	factories_by_city[name_of_the_city] = factories_it_has
+	to_connection.emit(factories_by_city)
 	pass # Replace with function body.
 
 

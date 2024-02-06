@@ -10,7 +10,7 @@ var max_connection = 1
 var cities_connected_to_as_in = []
 var cities_connected_to_as_out = []
 var goods_ = [1,2,3]
-var factroies = [0,0,0]
+@export var factroies = [1,0,0]
 var wages_ = [0,0,0]
 var money_
 @export var factory_cost = 100

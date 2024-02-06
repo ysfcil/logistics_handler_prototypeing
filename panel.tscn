@@ -63,23 +63,27 @@ scale = Vector2(0.928571, 0.610612)
 text = "+"
 
 [node name="Goods_label2" type="Label" parent="."]
+layout_mode = 0
 offset_top = 88.0
 offset_right = 86.0
 offset_bottom = 111.0
 
 [node name="Goods_label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 63.0
 offset_right = 93.0
 offset_bottom = 86.0
 
 [node name="Factory_label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 145.0
 offset_top = 62.0
 offset_right = 176.0
 offset_bottom = 85.0
 
 [node name="Factory_label2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 145.0
 offset_top = 87.0
 offset_right = 176.0

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkrnq06ivccbn"]
+
+[ext_resource type="PackedScene" uid="uid://da02rb8q5cgkq" path="res://new_connection.tscn" id="1_jbhlx"]
+[ext_resource type="Script" path="res://VBox.gd" id="1_xbpha"]
+
+[node name="Window" type="Window"]
+initial_position = 2
+size = Vector2i(480, 250)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_xbpha")
+containerScene = ExtResource("1_jbhlx")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "+"
+
+[node name="New_connection" parent="VBoxContainer" instance=ExtResource("1_jbhlx")]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer" method="_on_button_pressed"]

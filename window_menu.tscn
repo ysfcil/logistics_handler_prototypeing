@@ -1,14 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkg7ot4oix2ck"]
+[gd_scene load_steps=3 format=3 uid="uid://pal15r0e180w"]
 
-[ext_resource type="Script" path="res://Logistics_menu.gd" id="1_nvk1w"]
+[sub_resource type="GDScript" id="GDScript_4fml5"]
+script/source = "extends Window
+signal to_Connection_creator(factories_by_city)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func logistics_handler_to_window(factories_by_city):
+	to_Connection_creator.emit(factories_by_city)
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_wghqv"]
+script/source = "extends Node
+var index_ = {0 : \"Bangladesh\", 1 : \"New_York\",2 :  \"London\"}
+var cities = [\"Bangladesh\", \"New_York\", \"London\"]
+signal connection_created(from_, to_, level, factory)
+var factory_info = {}
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	
+	for i in cities:
+		$PopupMenu.add_check_item(i)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_popup_menu_index_pressed(index):
+	print(\"kjfkald\")
+	$sender_name.text = str(index_[index])
+	for i in cities:
+		for j in len(factory_info.values()[0]):
+			print(factory_info[i][j])
+		
+	$PopupMenu2.visible = true
+	pass # Replace with function body.
+
+
+func _on_popup_menu_2_id_pressed(id):
+	print(\"connection created\")
+	$getting_city.text = str($PopupMenu2.get_item_text(id))
+	pass # Replace with function body.
+
+
+func window_to_connection_creator(factories_by_city):
+	factory_info = factories_by_city
+	pass # Replace with function body.
+"
 
 [node name="Window" type="Window"]
 title = "Logistics"
 position = Vector2i(0, 36)
 size = Vector2i(535, 250)
-script = ExtResource("1_nvk1w")
+script = SubResource("GDScript_4fml5")
 
 [node name="connection_create" type="Node" parent="."]
+script = SubResource("GDScript_wghqv")
 
 [node name="PopupMenu" type="PopupMenu" parent="connection_create"]
 title = "City"
@@ -22,11 +80,14 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="PopupMenu2" type="PopupMenu" parent="connection_create"]
-position = Vector2i(250, 50)
+position = Vector2i(200, 50)
 size = Vector2i(130, 60)
 
 [node name="getting_city" type="Label" parent="connection_create"]
-offset_right = 40.0
+offset_left = 200.0
+offset_right = 240.0
 offset_bottom = 23.0
 
-[connection signal="index_pressed" from="connection_create/PopupMenu" to="." method="_on_popup_menu_index_pressed"]
+[connection signal="to_Connection_creator" from="." to="connection_create" method="window_to_connection_creator"]
+[connection signal="index_pressed" from="connection_create/PopupMenu" to="connection_create" method="_on_popup_menu_index_pressed"]
+[connection signal="id_pressed" from="connection_create/PopupMenu2" to="connection_create" method="_on_popup_menu_2_id_pressed"]
