@@ -3,29 +3,23 @@
 [ext_resource type="Script" path="res://new_connection.gd" id="1_2mqgp"]
 
 [node name="New_connection" type="HBoxContainer"]
-offset_right = 328.0
-offset_bottom = 40.0
-size_flags_horizontal = 2
+layout_direction = 1
+offset_right = 614.0
+offset_bottom = 35.0
 size_flags_vertical = 2
-size_flags_stretch_ratio = 7.02
+alignment = 1
 script = ExtResource("1_2mqgp")
 
-[node name="city_giving" type="MenuButton" parent="."]
+[node name="from_city" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "city giving"
+size_flags_horizontal = 2
 
-[node name="factory_type" type="MenuButton" parent="."]
+[node name="factory_type" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "factory_type"
 
-[node name="city_receving" type="MenuButton" parent="."]
+[node name="to_city" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-text = "city_receving"
-
-[node name="OptionButton" type="OptionButton" parent="."]
-layout_mode = 2
-item_count = 2
-popup/item_0/text = "asdas"
-popup/item_0/id = 0
-popup/item_1/text = "asdasfa"
-popup/item_1/id = 1
+size_flags_horizontal = 10
