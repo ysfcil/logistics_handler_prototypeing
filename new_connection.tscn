@@ -6,20 +6,33 @@
 layout_direction = 1
 offset_right = 614.0
 offset_bottom = 35.0
-size_flags_vertical = 2
-alignment = 1
+size_flags_vertical = 0
 script = ExtResource("1_2mqgp")
 
 [node name="from_city" type="OptionButton" parent="."]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 2
+fit_to_longest_item = false
 
 [node name="factory_type" type="OptionButton" parent="."]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+fit_to_longest_item = false
 
 [node name="to_city" type="OptionButton" parent="."]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(140, 30)
 layout_mode = 2
 size_flags_horizontal = 10
+fit_to_longest_item = false
+
+[node name="cancel_button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "X"
+
+[connection signal="item_selected" from="from_city" to="." method="from_city_item_selected"]
+[connection signal="item_selected" from="factory_type" to="." method="factory_type_item_selected"]
+[connection signal="item_selected" from="to_city" to="." method="to_city_item_selected"]
+[connection signal="pressed" from="cancel_button" to="." method="_on_cancel_button_pressed"]

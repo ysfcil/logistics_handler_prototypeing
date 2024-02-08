@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://VBox.gd" id="1_xbpha"]
 
 [node name="Window" type="Window"]
-position = Vector2i(374, 171)
+initial_position = 2
 size = Vector2i(600, 250)
 script = ExtResource("1_f3f7w")
 

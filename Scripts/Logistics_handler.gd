@@ -42,23 +42,53 @@ func draw_line(out_, in_):
 	pass
 
 func _on_timer_timeout():
-	#delivery of connected lines
-	for i in len(connections):
-		for j in len(goods_by_city["Bangladesh"]):
-			transferred_amount = 10
-			if goods_by_city[connections[i][0]][j] > transferred_amount:
-				goods_by_city[connections[i][0]][j] -= transferred_amount
-				goods_by_city[connections[i][1]][j] += transferred_amount
+	for i in len (connections):
+		if connections[i][1] == "Vehicle":
+			if goods_by_city[connections[i][0]][2] > transferred_amount:
+				goods_by_city[connections[i][0]][2] -= transferred_amount
+				goods_by_city[connections[i][2]][2] += transferred_amount
 			else:
-				transferred_amount = goods_by_city[connections[i][0]][j]
-				goods_by_city[connections[i][0]][j] = 0
-				goods_by_city[connections[i][1]][j] += transferred_amount
+				goods_by_city[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
+				goods_by_city[connections[i][0]][2] = 0
+		if connections[i][1] == "Plastics":
+			if goods_by_city[connections[i][0]][0] > transferred_amount:
+				goods_by_city[connections[i][0]][0] -= transferred_amount
+				goods_by_city[connections[i][2]][0] += transferred_amount
+			else:
+				goods_by_city[connections[i][2]][0] += goods_by_city[connections[i][0]][2]
+				goods_by_city[connections[i][0]][0] = 0
+		if connections[i][1] == "Electronics":
+			if goods_by_city[connections[i][0]][1] > transferred_amount:
+				goods_by_city[connections[i][0]][1] -= transferred_amount
+				goods_by_city[connections[i][2]][1] += transferred_amount
+			else:
+				goods_by_city[connections[i][2]][1] += goods_by_city[connections[i][0]][2]
+				goods_by_city[connections[i][0]][1] = 0		
+	
+	
+	
+	
+	
+	
+	
+	
+	#delivery of connected lines
+	#for i in len(connections):
+	#	for j in len(goods_by_city["Bangladesh"]):
+	#		transferred_amount = 10
+	#		if goods_by_city[connections[i][0]][j] > transferred_amount:
+	#			goods_by_city[connections[i][0]][j] -= transferred_amount
+	#			goods_by_city[connections[i][1]][j] += transferred_amount
+	#		else:
+	#			transferred_amount = goods_by_city[connections[i][0]][j]
+	#			goods_by_city[connections[i][0]][j] = 0
+	#			goods_by_city[connections[i][1]][j] += transferred_amount
 	#produciton and payement
 	for i in len(goods_by_city):
 		for j in len(goods_by_city.values()):
 			if resources["Oil1"][0] or resources["Oil2"][0]:
 				goods_by_city.values()[i][j] += factories_by_city.values()[i][j]*100
-			Money -= wages_by_city.values()[i][j] * factories_by_city.values()[i][j]
+			#Money -= wages_by_city.values()[i][j] * factories_by_city.values()[i][j]
 			
 	#payment
 	send_info_to_city()
@@ -78,4 +108,19 @@ func factory_info(name_of_the_city, factories_it_has, money_):
 
 func resource_to_logistics(resource_):
 	resources = resource_
+	pass # Replace with function body.
+
+
+func new_connection_connenction_created(connection_info):
+	connections.append(connection_info)
+	pass # Replace with function body.
+
+
+func connection_destroyed(connection_info):
+	connections.erase(connection_info)
+	pass # Replace with function body.
+
+
+func new_connection_line_is_made():
+	var new_connection = get
 	pass # Replace with function body.
