@@ -1,10 +1,5 @@
-res://new_connection.gd
-res://new_connection.tscn
-res://main.tscn
-res://logistics_handler.tscn
 res://panel.tscn
-res://log_window.tscn
-res://log_window.gd
-res://Sprites/main_script.gd
+res://Scripts/city_control_script.gd
 res://Scripts/Logistics_handler.gd
-res://VBox.gd
+res://Sprites/main_script.gd
+res://main.tscn

@@ -3,6 +3,7 @@ signal to_connection(factories_by_city)
 var goods_by_city = {"Bangladesh":[107,1,2], "London": [10,1,3], "New_York": [500,1,4]}
 var factories_by_city = {"Bangladesh":[1,0,0], "London": [0,0,0], "New_York": [0,0,0]}
 var wages_by_city = {"Bangladesh":[100,230,350], "London": [500,670,890], "New_York": [689,890,1000]}
+var goods_by_city_for_Sale = {"Bangladesh":[0,0,0], "London": [0,0,0], "New_York": [0,0,0]}
 @onready var positions_cities = {"Bangladesh":$Bangladesh.global_position, "London": $London.position, "New_York": $New_York.position}
 signal connection_created(out_, in_)
 signal linePositions(first, second)
@@ -26,44 +27,40 @@ func _process(delta):
 	pass
 
 
-func logistics_handler_info(goods_out, goods_in):
-	if ![goods_in, goods_out] in connections:
-		connections.append([goods_out, goods_in])
-		connection_created.emit(goods_out, goods_in)
-		draw_line(goods_out, goods_in)
-	pass # Replace with function body.
-func draw_line(out_, in_):
-	var l = line_scene.instantiate()
-	l.out_point_name = out_
-	l.in_point_name = in_
-	l.first_point = positions_cities[out_]
-	l.second_point = positions_cities[in_]
-	call_deferred("add_child", l)
-	pass
-
 func _on_timer_timeout():
 	for i in len (connections):
-		if connections[i][1] == "Vehicle":
-			if goods_by_city[connections[i][0]][2] > transferred_amount:
-				goods_by_city[connections[i][0]][2] -= transferred_amount
-				goods_by_city[connections[i][2]][2] += transferred_amount
-			else:
-				goods_by_city[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
-				goods_by_city[connections[i][0]][2] = 0
-		if connections[i][1] == "Plastics":
-			if goods_by_city[connections[i][0]][0] > transferred_amount:
-				goods_by_city[connections[i][0]][0] -= transferred_amount
-				goods_by_city[connections[i][2]][0] += transferred_amount
-			else:
-				goods_by_city[connections[i][2]][0] += goods_by_city[connections[i][0]][2]
+		if connections[i][0] == connections[i][2]:
+			if connections[i][1] == "Vehicle":
+				goods_by_city_for_Sale[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
+				goods_by_city[connections[i][0]][2] -= 0
+			if connections[i][1] == "Plastics":
+				goods_by_city_for_Sale[connections[i][2]][0] += goods_by_city[connections[i][0]][0]
 				goods_by_city[connections[i][0]][0] = 0
-		if connections[i][1] == "Electronics":
-			if goods_by_city[connections[i][0]][1] > transferred_amount:
-				goods_by_city[connections[i][0]][1] -= transferred_amount
-				goods_by_city[connections[i][2]][1] += transferred_amount
-			else:
-				goods_by_city[connections[i][2]][1] += goods_by_city[connections[i][0]][2]
-				goods_by_city[connections[i][0]][1] = 0		
+			if connections[i][1] == "Electronics":
+				goods_by_city_for_Sale[connections[i][2]][1] += goods_by_city[connections[i][0]][1]
+				goods_by_city[connections[i][0]][1] = 0	
+		else:
+			if connections[i][1] == "Vehicle":
+				if goods_by_city[connections[i][0]][2] > transferred_amount:
+					goods_by_city[connections[i][0]][2] -= transferred_amount
+					goods_by_city_for_Sale[connections[i][2]][2] += transferred_amount
+				else:
+					goods_by_city_for_Sale[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
+					goods_by_city[connections[i][0]][2] = 0
+			if connections[i][1] == "Plastics":
+				if goods_by_city[connections[i][0]][0] > transferred_amount:
+					goods_by_city[connections[i][0]][0] -= transferred_amount
+					goods_by_city_for_Sale[connections[i][2]][0] += transferred_amount
+				else:
+					goods_by_city_for_Sale[connections[i][2]][0] += goods_by_city[connections[i][0]][2]
+					goods_by_city[connections[i][0]][0] = 0
+			if connections[i][1] == "Electronics":
+				if goods_by_city[connections[i][0]][1] > transferred_amount:
+					goods_by_city[connections[i][0]][1] -= transferred_amount
+					goods_by_city_for_Sale[connections[i][2]][1] += transferred_amount
+				else:
+					goods_by_city_for_Sale[connections[i][2]][1] += goods_by_city[connections[i][0]][2]
+					goods_by_city[connections[i][0]][1] = 0		
 	
 	
 	
@@ -96,7 +93,7 @@ func _on_timer_timeout():
 	pass # Replace with function body.
 func send_info_to_city():
 	for i in len(goods_by_city):
-		city_has_goods.emit(goods_by_city.keys()[i], goods_by_city.values()[i], Money, wages_by_city)
+		city_has_goods.emit(goods_by_city.keys()[i], goods_by_city.values()[i], Money, wages_by_city, goods_by_city_for_Sale)
 	to_connection.emit(factories_by_city)
 
 func factory_info(name_of_the_city, factories_it_has, money_):
@@ -120,7 +117,3 @@ func connection_destroyed(connection_info):
 	connections.erase(connection_info)
 	pass # Replace with function body.
 
-
-func new_connection_line_is_made():
-	var new_connection = get
-	pass # Replace with function body.
