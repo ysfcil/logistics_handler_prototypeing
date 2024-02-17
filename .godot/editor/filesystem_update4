@@ -1,5 +1,2 @@
-res://panel.tscn
-res://Scripts/city_control_script.gd
-res://Scripts/Logistics_handler.gd
-res://Sprites/main_script.gd
 res://main.tscn
+res://panel.tscn
