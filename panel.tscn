@@ -4,9 +4,9 @@
 
 [node name="Bangladesh" type="Panel"]
 offset_left = 384.0
-offset_top = 113.0
+offset_top = 112.0
 offset_right = 560.0
-offset_bottom = 303.0
+offset_bottom = 302.0
 script = ExtResource("1_jp0mf")
 
 [node name="Name_label" type="Label" parent="."]
@@ -18,17 +18,18 @@ horizontal_alignment = 1
 
 [node name="Goods_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 112.0
-offset_right = 87.0
-offset_bottom = 136.0
+offset_top = 111.0
+offset_right = 96.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 11
 
 [node name="Factory_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 145.0
-offset_top = 108.0
-offset_right = 176.0
-offset_bottom = 131.0
+offset_left = 144.0
+offset_top = 111.0
+offset_right = 175.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 11
 
 [node name="facto_buy" type="Button" parent="."]
 layout_mode = 1
@@ -37,41 +38,103 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -80.0
+offset_top = -79.0
 offset_right = 17.0
-offset_bottom = -49.0
+offset_bottom = -53.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.928571, 0.610612)
+theme_override_font_sizes/font_size = 11
 text = "+"
 
 [node name="Goods_label2" type="Label" parent="."]
 layout_mode = 0
-offset_top = 88.0
-offset_right = 86.0
+offset_top = 95.0
+offset_right = 96.0
 offset_bottom = 111.0
+theme_override_font_sizes/font_size = 11
 
 [node name="Goods_label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 63.0
-offset_right = 93.0
-offset_bottom = 86.0
+offset_top = 79.0
+offset_right = 87.0
+offset_bottom = 97.0
+scale = Vector2(1.10504, 0.868008)
+theme_override_font_sizes/font_size = 11
+text = "x"
 
 [node name="Factory_label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = 145.0
-offset_top = 62.0
-offset_right = 176.0
-offset_bottom = 85.0
+offset_left = 144.0
+offset_top = 79.0
+offset_right = 175.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 11
 
 [node name="Factory_label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 145.0
-offset_top = 87.0
-offset_right = 176.0
-offset_bottom = 110.0
+offset_left = 144.0
+offset_top = 95.0
+offset_right = 175.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 11
+
+[node name="facto_buy3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -111.0
+offset_right = 17.0
+offset_bottom = -85.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.928571, 0.610612)
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="facto_buy2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -95.0
+offset_right = 17.0
+offset_bottom = -69.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.928571, 0.610612)
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="sellgoods1" type="Label" parent="."]
+offset_left = 88.0
+offset_top = 112.0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 11
+
+[node name="sellgoods2" type="Label" parent="."]
+offset_left = 88.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 11
+
+[node name="sellgoods3" type="Label" parent="."]
+offset_left = 88.0
+offset_top = 80.0
+offset_right = 124.0
+offset_bottom = 98.0
+scale = Vector2(1.10504, 0.868008)
+theme_override_font_sizes/font_size = 11
+text = "x"
 
 [connection signal="sending_goods" from="." to="." method="other_city_sending_goods"]
 [connection signal="pressed" from="facto_buy" to="." method="_on_facto_buy_pressed"]
+[connection signal="pressed" from="facto_buy3" to="." method="_on_facto_buy_3_pressed"]
+[connection signal="pressed" from="facto_buy2" to="." method="_on_facto_buy_2_pressed"]

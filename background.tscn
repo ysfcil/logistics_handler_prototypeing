@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ss7b2k80i0u6"]
+
+[ext_resource type="Texture2D" uid="uid://83c7fm3cf3rh" path="res://Sprites/istockphoto-586705940-612x612.png" id="1_ygxdx"]
+
+[node name="background" type="Node2D"]
+
+[node name="Istockphoto-586705940-612x612" type="Sprite2D" parent="."]
+position = Vector2(720, 624)
+scale = Vector2(3.55882, 3.20588)
+texture = ExtResource("1_ygxdx")

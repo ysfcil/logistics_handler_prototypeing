@@ -1,5 +1,6 @@
 extends Node
 signal to_connection(factories_by_city)
+var log_budget: float = 10
 var goods_by_city = {"Bangladesh":[107,1,2], "London": [10,1,3], "New_York": [500,1,4]}
 var factories_by_city = {"Bangladesh":[1,0,0], "London": [0,0,0], "New_York": [0,0,0]}
 var wages_by_city = {"Bangladesh":[100,230,350], "London": [500,670,890], "New_York": [689,890,1000]}
@@ -15,7 +16,7 @@ var Money
 var resources = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Money = 10000
+	Money = 10000000
 	send_info_to_city()
 	to_connection.emit(factories_by_city)
 	pass # Replace with function body.
@@ -31,14 +32,18 @@ func _on_timer_timeout():
 	for i in len (connections):
 		if connections[i][0] == connections[i][2]:
 			if connections[i][1] == "Vehicle":
-				goods_by_city_for_Sale[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
-				goods_by_city[connections[i][0]][2] -= 0
+				if goods_by_city[connections[i][2]][2] > 0:
+					goods_by_city_for_Sale[connections[i][2]][2] += goods_by_city[connections[i][0]][2]
+					goods_by_city[connections[i][0]][2] = 0
+				
 			if connections[i][1] == "Plastics":
-				goods_by_city_for_Sale[connections[i][2]][0] += goods_by_city[connections[i][0]][0]
-				goods_by_city[connections[i][0]][0] = 0
+				if goods_by_city[connections[i][2]][0] > 0:
+					goods_by_city_for_Sale[connections[i][2]][0] += goods_by_city[connections[i][0]][0]
+					goods_by_city[connections[i][0]][0] = 0
 			if connections[i][1] == "Electronics":
-				goods_by_city_for_Sale[connections[i][2]][1] += goods_by_city[connections[i][0]][1]
-				goods_by_city[connections[i][0]][1] = 0	
+				if goods_by_city[connections[i][2]][1] > 0:
+					goods_by_city_for_Sale[connections[i][2]][1] += goods_by_city[connections[i][0]][1]
+					goods_by_city[connections[i][0]][1] = 0	
 		else:
 			if connections[i][1] == "Vehicle":
 				if goods_by_city[connections[i][0]][2] > transferred_amount:
@@ -83,12 +88,40 @@ func _on_timer_timeout():
 	#produciton and payement
 	for i in len(goods_by_city):
 		for j in len(goods_by_city.values()):
-			if resources["Oil1"][0] or resources["Oil2"][0]:
-				goods_by_city.values()[i][j] += factories_by_city.values()[i][j]*100
+			if resources["Oil1"][0]:
+				goods_by_city.values()[i][0] += factories_by_city.values()[i][0]*100
+				Money -= resources["Oil1"][2]*100
+			if resources["Oil2"][0]:
+				goods_by_city.values()[i][0] += factories_by_city.values()[i][0]*100
+				Money -= resources["Oil2"][2]*100
+			if resources["Lithium1"][0]:
+				goods_by_city.values()[i][1] += factories_by_city.values()[i][1]*50
+				Money -= resources["Lithium1"][2]*100
+			if resources["Lithium2"][0]:
+				goods_by_city.values()[i][1] += factories_by_city.values()[i][1]*50
+				Money -= resources["Lithium2"][2]*100
+			if resources["Gold1"][0]:
+				goods_by_city.values()[i][2] += factories_by_city.values()[i][2]*10
+				Money -= resources["Gold1"][2]*100
+			if resources["Gold2"][0]:
+				goods_by_city.values()[i][2] += factories_by_city.values()[i][2]*10
+				Money -= resources["Gold2"][2]*100
 			#Money -= wages_by_city.values()[i][j] * factories_by_city.values()[i][j]
 			
 	#payment
+	
+	#SELLING
+	for _city in goods_by_city_for_Sale:
+		for i in len(goods_by_city_for_Sale[_city]):
+			var potential_sell = 100
+			if  goods_by_city_for_Sale[_city][i] > potential_sell:
+				goods_by_city_for_Sale[_city][i] -= potential_sell
+				Money += 100*potential_sell
+			else:
+				Money += 100*goods_by_city_for_Sale[_city][i]
+				goods_by_city_for_Sale[_city][i] = 0
 	send_info_to_city()
+	
 	
 	pass # Replace with function body.
 func send_info_to_city():

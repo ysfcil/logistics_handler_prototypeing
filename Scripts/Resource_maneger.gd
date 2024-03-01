@@ -3,7 +3,7 @@ signal resource_is_working(name_of_resource,influence, price)
 signal resource_to_logistics(resource_)
 var resource_Type = ["Oil", "Lithium", "Gold"]
 var resource_price = [10, 100, 1000]
-var resource_info = {"Oil1":[false,1, 100], "Lithium1":[false,1,10], "Gold1":[false,1,1000],"Oil2":[false,1,90], "Lithium2":[false,1,9.8], "Gold2":[false,1,990]}
+var resource_info = {"Oil1":[false,1, 1.2], "Lithium1":[false,1,1.5], "Gold1":[false,1,10],"Oil2":[false,1,1.6], "Lithium2":[false,1,2.1], "Gold2":[false,1,11.3]}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -1,2 +1,12 @@
+res://background.tscn
 res://main.tscn
 res://panel.tscn
+res://budget_handler.tscn
+res://budget_script.gd
+res://Scripts/city_control_script.gd
+res://Scripts/Raw_resource.gd
+res://new_connection.gd
+res://Scripts/Logistics_handler.gd
+res://raw_resource.tscn
+res://Resource_maneger.tscn
+res://Scripts/Resource_maneger.gd

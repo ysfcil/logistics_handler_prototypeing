@@ -8,7 +8,7 @@ var connection_estabilished = 0
 var max_connection = 1
 var goods_ = [1,2,3]
 var goods_for_sale = [0,0,0]
-@export var factroies = [1,0,0]
+@export var factroies = [0,0,0]
 var wages_ = [0,0,0]
 var money_
 @export var factory_cost = 100
@@ -30,6 +30,9 @@ func info_update():
 	$Factory_label2.text = "| %d" % [factroies[1]]
 	$Goods_label3.text = "Vehicles: %d" % [goods_[2]]
 	$Factory_label3.text = "| %d" % [factroies[2]]
+	$sellgoods1.text = "%d" % [goods_for_sale[0]]
+	$sellgoods2.text = "%d" % [goods_for_sale[1]]
+	$sellgoods3.text = "%d" % [goods_for_sale[2]]
 	logistics_handler_factory_info.emit(name_city, factroies, money_)
 	
 
@@ -40,7 +43,6 @@ func _on_logistics_handler_city_has_goods(name_name, name_goods, Money, wages, s
 			goods_ = name_goods
 			wages = wages_
 			sale_goods[name_city] = goods_for_sale
-			print(goods_for_sale)
 	info_update()
 	pass # Replace with function body.
 
@@ -53,4 +55,26 @@ func _on_facto_buy_pressed():
 		factroies[0] += 1
 		logistics_handler_factory_info.emit(name_city, factroies, money_)
 		info_update()
+	pass # Replace with function body.
+
+
+func _on_facto_buy_2_pressed():
+	if money_ >= factory_cost:
+		print(name_city)
+		money_ -= factory_cost
+		factroies[1] += 1
+		logistics_handler_factory_info.emit(name_city, factroies, money_)
+		info_update()
+	pass # Replace with function body.
+	pass # Replace with function body.
+
+
+func _on_facto_buy_3_pressed():
+	if money_ >= factory_cost:
+		print(name_city)
+		money_ -= factory_cost
+		factroies[2] += 1
+		logistics_handler_factory_info.emit(name_city, factroies, money_)
+		info_update()
+	pass # Replace with function body.
 	pass # Replace with function body.

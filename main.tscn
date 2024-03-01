@@ -34,20 +34,11 @@ show_percentage = false
 
 [node name="Logistics_handler" parent="." groups=["logistics"] instance=ExtResource("2_gwgwm")]
 
-[node name="Bangladesh" parent="Logistics_handler" index="0"]
-factroies = [2, 2, 3]
-
-[node name="London" parent="Logistics_handler" index="1"]
-factroies = [1, 2, 3]
-
-[node name="New_York" parent="Logistics_handler" index="2"]
-factroies = [1, 3, 2]
-
 [node name="raw_resources" parent="." instance=ExtResource("4_q4web")]
 
 [node name="Window" parent="." instance=ExtResource("5_mdrh3")]
 title = "Logistics Handler"
-position = Vector2i(1201, 171)
+position = Vector2i(1200, 171)
 
 [node name="Call_Logistics_window" type="Button" parent="."]
 anchors_preset = 1
@@ -65,7 +56,14 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Logistics_handler" method="_on_timer_timeout"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Oil1" method="resource_is_working"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Oil2" method="resource_is_working"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Lithium1" method="resource_is_working"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Lithium2" method="resource_is_working"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Gold1" method="resource_is_working"]
+[connection signal="resource_is_working" from="raw_resources" to="raw_resources/Gold2" method="resource_is_working"]
 [connection signal="resource_to_logistics" from="raw_resources" to="Logistics_handler" method="resource_to_logistics"]
 [connection signal="pressed" from="Window/VBoxContainer/Button" to="Logistics_handler" method="new_connection_line_is_made"]
 [connection signal="pressed" from="Call_Logistics_window" to="Window" method="_on_call"]

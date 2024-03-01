@@ -1,5 +1,5 @@
 extends Panel
-signal resource_on(name_)
+signal resource_on(name_, price)
 var resource_Type = ["Oil", "Lithium", "Gold"]
 @export var is_oil =false
 @export var is_Lithium=false
